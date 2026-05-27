@@ -4,9 +4,11 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'auth_service.dart';
+import 'chat_screen.dart';
 import 'emergency_screen.dart';
 import 'health_tips_screen.dart';
 import 'medication_screen.dart';
+import 'symptom_checker_screen.dart';
 import 'profile_screen.dart';
 import 'responsive.dart';
 import 'local_notification_service.dart';
@@ -1507,6 +1509,14 @@ class _MainPageState extends State<MainPage> {
                                   children: [
                                     _buildDashboardCard(
                                       context,
+                                      title: 'Health Chat',
+                                      subtitle: 'Talk with the AI assistant',
+                                      icon: Icons.chat_bubble_outline,
+                                      color: Colors.blue.shade700,
+                                      onTap: () => _navigate(context, const ChatScreen()),
+                                    ),
+                                    _buildDashboardCard(
+                                      context,
                                       title: 'Emergency Help',
                                       subtitle: 'Get urgent care advice',
                                       icon: Icons.local_hospital_outlined,
@@ -1520,6 +1530,14 @@ class _MainPageState extends State<MainPage> {
                                       icon: Icons.lightbulb_outline,
                                       color: Colors.teal.shade700,
                                       onTap: () => _navigate(context, const HealthTipsScreen()),
+                                    ),
+                                    _buildDashboardCard(
+                                      context,
+                                      title: 'Symptom Checker',
+                                      subtitle: 'Check your symptoms quickly',
+                                      icon: Icons.medical_services_outlined,
+                                      color: Colors.orange.shade700,
+                                      onTap: () => _navigate(context, const SymptomCheckerScreen()),
                                     ),
                                     _buildDashboardCard(
                                       context,

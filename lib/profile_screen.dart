@@ -3,6 +3,7 @@ import 'dart:typed_data';
 import 'package:flutter/material.dart';
 
 import 'auth_service.dart';
+import 'chat_screen.dart';
 import 'main.dart';
 import 'profile_edit_screen.dart';
 
@@ -552,7 +553,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
         onTap: () {
           Navigator.of(
             context,
-          ).push(MaterialPageRoute(builder: (_) => Container()));
+          ).push(MaterialPageRoute(builder: (_) => const ChatScreen()));
         },
         borderRadius: BorderRadius.circular(16),
         child: Padding(
