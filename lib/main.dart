@@ -4,11 +4,13 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'auth_service.dart';
+import 'consultations_screen.dart';
 import 'emergency_screen.dart';
 import 'health_tips_screen.dart';
 import 'medication_screen.dart';
 import 'profile_screen.dart';
 import 'responsive.dart';
+import 'appointments_screen.dart';
 import 'local_notification_service.dart';
 import 'health_tracker_screen.dart';
 import 'reports_records_screen.dart';
@@ -1493,6 +1495,22 @@ class _MainPageState extends State<MainPage> {
                                   physics: const NeverScrollableScrollPhysics(),
                                   childAspectRatio: aspectRatio,
                                   children: [
+                                    _buildDashboardCard(
+                                      context,
+                                      title: 'Patient Bookings',
+                                      subtitle: 'Manage booked appointments',
+                                      icon: Icons.calendar_month_outlined,
+                                      color: Colors.purple.shade700,
+                                      onTap: () => _navigate(context, const AppointmentsScreen()),
+                                    ),
+                                    _buildDashboardCard(
+                                      context,
+                                      title: 'Active Consultations',
+                                      subtitle: 'Incoming patient consultations',
+                                      icon: Icons.chat_bubble_rounded,
+                                      color: Colors.teal.shade700,
+                                      onTap: () => _navigate(context, const ConsultationsScreen()),
+                                    ),
                                   ],
                                 );
                               } else {
@@ -1523,6 +1541,14 @@ class _MainPageState extends State<MainPage> {
                                     ),
                                     _buildDashboardCard(
                                       context,
+                                      title: 'Appointments',
+                                      subtitle: 'Book, reschedule or cancel visits',
+                                      icon: Icons.calendar_month_outlined,
+                                      color: Colors.purple.shade700,
+                                      onTap: () => _navigate(context, const AppointmentsScreen()),
+                                    ),
+                                    _buildDashboardCard(
+                                      context,
                                       title: 'Medication',
                                       subtitle: 'Reminders, adherence & refills',
                                       icon: Icons.medication,
@@ -1536,6 +1562,14 @@ class _MainPageState extends State<MainPage> {
                                       icon: Icons.favorite_border_rounded,
                                       color: const Color(0xFF059669),
                                       onTap: () => _navigate(context, const HealthTrackerScreen()),
+                                    ),
+                                    _buildDashboardCard(
+                                      context,
+                                      title: 'Consultations',
+                                      subtitle: 'Message, video & voice with providers',
+                                      icon: Icons.chat_bubble_rounded,
+                                      color: Colors.teal.shade700,
+                                      onTap: () => _navigate(context, const ConsultationsScreen()),
                                     ),
                                     _buildDashboardCard(
                                       context,
