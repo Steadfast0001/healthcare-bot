@@ -2,6 +2,7 @@ services:
   - type: web
     name: healthcare-backend
     env: python
+    plan: free
     buildCommand: "cd backend && pip install -r requirements.txt"
     startCommand: "cd backend && uvicorn main:app --host 0.0.0.0 --port $PORT"
     envVars:
@@ -20,5 +21,6 @@ services:
 
 databases:
   - name: healthcare-db
+    plan: free
     databaseName: healthcare_db
     user: healthcare_user
