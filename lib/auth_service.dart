@@ -21,6 +21,11 @@ class AuthRequiredException implements Exception {
 class AuthService {
   static const int maxEmergencyContacts = 10;
   static String get _baseUrl {
+    final configuredUrl = dotenv.env['BACKEND_URL']?.trim();
+    if (configuredUrl != null && configuredUrl.isNotEmpty) {
+      return configuredUrl;
+    }
+
     if (kIsWeb) {
       final browserUri = Uri.base;
       final host = browserUri.host.isEmpty ? '127.0.0.1' : browserUri.host;
@@ -28,11 +33,7 @@ class AuthService {
       return Uri(scheme: scheme, host: host, port: 8001).toString();
     }
 
-    final configuredUrl = dotenv.env['BACKEND_URL']?.trim();
-    final rawUrl = configuredUrl != null && configuredUrl.isNotEmpty
-        ? configuredUrl
-        : 'http://localhost:8001';
-
+    final rawUrl = 'http://localhost:8001';
     final uri = Uri.tryParse(rawUrl);
     if (uri == null || uri.host.isEmpty) {
       return 'http://localhost:8001';
