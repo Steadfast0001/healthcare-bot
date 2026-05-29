@@ -57,6 +57,8 @@ def is_origin_allowed(origin: str) -> bool:
     for dev in dev_origins:
         if origin == dev or origin.startswith(dev + ":"):
             return True
+    if origin.endswith(".vercel.app"):
+        return True
     return False
 
 
