@@ -2130,10 +2130,11 @@ def _ensure_reference_data(db: Session) -> None:
         for symptom in db.query(models.Symptom).all()
         if symptom.name
     }
+    condition_names_needed = ["Malaria", "Flu", "Typhoid", "Dehydration", "Possible Emergency", "Cholera", "Yellow Fever", "Hypertension", "Diabetes Mellitus", "Gastroenteritis", "Urinary Tract Infection", "Bronchitis"]
     condition_ids = {
-        condition.name: condition.id
-        for condition in db.query(models.Condition).all()
-        if condition.name
+        c.name: c.id
+        for c in db.query(models.Condition).filter(models.Condition.name.in_(condition_names_needed)).all()
+        if c.name
     }
     mapping_rows = [
         ("fever", "Malaria", 0.90),
